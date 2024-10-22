@@ -1,7 +1,9 @@
+# azure-pipelines.yml
+
 trigger:
 - main  # Adjust this to your default branch
 
-pool: 'Default'  # You can change this to a Windows agent if needed
+pool: 'Default'  # Use a Windows agent if needed
 
 steps:
 - task: NodeTool@0
@@ -10,21 +12,27 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install
-    npm run build  # If you have a build step
-    npx cypress run --config video=false --reporter junit --reporter-options 'mochaFile=results/test-results-[hash].xml'
+    npm install  # Install project dependencies
+    npm run build  # Optional: Run if you have a build step
+    npx cypress run --config video=true --reporter mochawesome --reporter-options 'reportDir=cypress/reports,overwrite=true,html=true,json=true'
   displayName: 'Run Cypress tests'
 
 - task: PublishTestResults@2
   inputs:
-    testResultsFormat: 'JUnit'  # Use appropriate format
-    testResultsFiles: '**/results/test-results-*.xml'  # Ensure this matches your output
-    searchFolder: 'results'  # Adjust to where your test results are stored
-    failOnNoResults: true
-    publishRunAttachments: true
+    testResultsFormat: 'JUnit'  # Use JUnit format for test results
+    testResultsFiles: '**/cypress/reports/*.json'  # Adjust to match your mochawesome output
+    searchFolder: 'cypress/reports'  # Folder where your test results are stored
+    failOnNoResults: true  # Fail the build if no test results are found
+    publishRunAttachments: true  # Publish attachments such as screenshots and videos
 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: 'cypress/screenshots'  # Publish screenshots if needed
-    ArtifactName: 'Screenshots'
-    publishLocation: 'Container'
+    ArtifactName: 'Screenshots'  # Name of the artifact
+    publishLocation: 'Container'  # Publish location
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'cypress/videos'  # Publish videos if needed
+    ArtifactName: 'Videos'  # Name of the artifact
+    publishLocation: 'Container'  # Publish location
