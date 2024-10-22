@@ -1,39 +1,64 @@
-# azure-pipelines.yml
 trigger:
-- main  # Adjust this to your default branch
+  - main  # or your default branch
 
-pool: 'Default'  # Use a Windows agent if needed
+pool: 'Default'
 
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '16.x'  # Use the Node.js version compatible with your project
+    versionSpec: '18.x'
   displayName: 'Install Node.js'
 
 - script: |
-    npm install  # Install project dependencies
-  displayName: 'Install dependencies'
+    npm ci
+  displayName: 'Install Dependencies'
 
 - script: |
-    npx cypress run --config video=true --reporter mochawesome --reporter-options 'reportDir=cypress/reports,overwrite=true,html=true,json=true'
-  displayName: 'Run Cypress tests'
+    npm install cypress
+    npm install @bahmutov/cypress-esbuild-preprocessor
+    npm install @badeball/cypress-cucumber-preprocessor
+    npm install cypress-mochawesome-reporter
+  displayName: 'Install Cypress and Required Packages'
+
+- script: |
+    npx cypress verify
+  displayName: 'Verify Cypress'
+
+- script: |
+    npx cypress run
+  displayName: 'Run Cypress Tests'
+  env:
+    CYPRESS_baseUrl: $(baseUrl)  # if you want to override the baseUrl from Azure DevOps variables
 
 - task: PublishTestResults@2
   inputs:
-    testResultsFormat: 'JUnit'  # Use JUnit format for test results
-    testResultsFiles: '**/cypress/reports/*.json'  # Adjust to match your mochawesome output
-    searchFolder: 'cypress/reports'  # Folder where your test results are stored
-    failOnNoResults: true  # Fail the build if no test results are found
-    publishRunAttachments: true  # Publish attachments such as screenshots and videos
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/cypress/results/*.xml'
+    mergeTestResults: true
+    testRunTitle: 'Cypress Tests'
+  condition: succeededOrFailed()
+  displayName: 'Publish Test Results'
 
-- task: PublishBuildArtifacts@1
+- task: PublishPipelineArtifact@1
   inputs:
-    PathtoPublish: 'cypress/screenshots'  # Publish screenshots if needed
-    ArtifactName: 'Screenshots'  # Name of the artifact
-    publishLocation: 'Container'  # Publish location
+    targetPath: '$(Build.SourcesDirectory)/cypress/videos'
+    artifact: 'cypress-videos'
+    publishLocation: 'pipeline'
+  condition: succeededOrFailed()
+  displayName: 'Publish Videos'
 
-- task: PublishBuildArtifacts@1
+- task: PublishPipelineArtifact@1
   inputs:
-    PathtoPublish: 'cypress/videos'  # Publish videos if needed
-    ArtifactName: 'Videos'  # Name of the artifact
-    publishLocation: 'Container'  # Publish location
+    targetPath: '$(Build.SourcesDirectory)/cypress/screenshots'
+    artifact: 'cypress-screenshots'
+    publishLocation: 'pipeline'
+  condition: failed()
+  displayName: 'Publish Screenshots'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.SourcesDirectory)/cypress/reports'
+    artifact: 'cypress-reports'
+    publishLocation: 'pipeline'
+  condition: succeededOrFailed()
+  displayName: 'Publish Mochawesome Reports'
