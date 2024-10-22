@@ -1,5 +1,4 @@
 # azure-pipelines.yml
-
 trigger:
 - main  # Adjust this to your default branch
 
@@ -12,16 +11,8 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    node -v  # Log Node.js version
-    npm -v   # Log npm version
-  displayName: 'Check Node and NPM versions'
-
-- script: npm install  # Ensure dependencies are installed correctly
+    npm install  # Install project dependencies
   displayName: 'Install dependencies'
-
-- script: |
-    npm run build  # Optional: If you have a build step
-  displayName: 'Build Project'
 
 - script: |
     npx cypress run --config video=true --reporter mochawesome --reporter-options 'reportDir=cypress/reports,overwrite=true,html=true,json=true'
