@@ -1,7 +1,10 @@
 trigger:
-  - main  # or your default branch
+  - main
 
-pool: 'Default'
+pool: 'Default'  # Changed to Windows since you're running on Windows
+
+variables:
+  baseUrl: 'https://rahulshettyacademy.com/AutomationPractice/'  # Default value from your cypress.config.js
 
 steps:
 - task: NodeTool@0
@@ -25,10 +28,8 @@ steps:
   displayName: 'Verify Cypress'
 
 - script: |
-    npx cypress run
+    npx cypress run --config baseUrl="$(baseUrl)"
   displayName: 'Run Cypress Tests'
-  env:
-    CYPRESS_baseUrl: $(baseUrl)  # if you want to override the baseUrl from Azure DevOps variables
 
 - task: PublishTestResults@2
   inputs:
