@@ -1,10 +1,11 @@
 trigger:
   - main
 
-pool: 'Default'  # Changed to Windows since you're running on Windows
+pool:
+  vmImage: 'windows-latest'
 
 variables:
-  baseUrl: 'https://rahulshettyacademy.com/AutomationPractice/'  # Default value from your cypress.config.js
+  baseUrl: 'https://rahulshettyacademy.com/AutomationPractice/'
 
 steps:
 - task: NodeTool@0
@@ -18,9 +19,11 @@ steps:
 
 - script: |
     npm install cypress
+    npm install typescript
     npm install @bahmutov/cypress-esbuild-preprocessor
     npm install @badeball/cypress-cucumber-preprocessor
     npm install cypress-mochawesome-reporter
+    npm install @types/node --save-dev
   displayName: 'Install Cypress and Required Packages'
 
 - script: |
