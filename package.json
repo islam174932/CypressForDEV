@@ -1,0 +1,38 @@
+{
+  "name": "cypressproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run",
+    "reporting": "npx cypress run --record --key 05c4ec12-fee2-4126-aaa7-ecb8cd7161dc --spec cypress/integration/examples/hooks.js",
+    "generate-report": "node cucumber-html-reporter.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^21.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.3",
+    "@cypress/browserify-preprocessor": "^3.0.2",
+    "@cypress/webpack-preprocessor": "^6.0.2",
+    "convert-excel-to-json": "^1.7.0",
+    "cypress": "^13.15.0",
+    "cypress-iframe": "^1.0.1",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "cypress-multi-reporters": "^1.6.4",
+    "cypress-sql-server": "^1.0.0",
+    "cypress-xpath": "^2.0.1",
+    "exceljs": "^4.4.0",
+    "jasmine": "^5.2.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0",
+    "multiple-cucumber-html-reporter": "^3.8.0",
+    "mysql": "^2.18.1",
+    "neat-csv": "^6.0.0"
+  },
+  "dependencies": {
+    "mysql2": "^3.11.3",
+    "pg": "^8.13.0"
+  }
+}

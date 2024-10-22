@@ -1,0 +1,173 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 3,
+    "pending": 0,
+    "failures": 1,
+    "start": "2024-10-22T19:39:14.067Z",
+    "end": "2024-10-22T19:39:46.938Z",
+    "duration": 32871,
+    "testsRegistered": 4,
+    "passPercent": 75,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "dd517003-c74f-45a5-959d-b0d482c73e9c",
+      "title": "",
+      "fullFile": "cypress\\integration\\examples\\AutomationPractice.spec.js",
+      "file": "cypress\\integration\\examples\\AutomationPractice.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "0f022880-cc54-4e65-8864-4c9554003c38",
+          "title": "Google Search Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Visits the page and interacts with checkboxes",
+              "fullTitle": "Google Search Test Visits the page and interacts with checkboxes",
+              "timedOut": null,
+              "duration": 14420,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "{\n  \"title\": \"cypress-mochawesome-reporter-videos-passed\",\n  \"value\": \"cypress\\\\integration\\\\examples\\\\AutomationPractice.spec.js\"\n}",
+              "code": "for (let i = 1; i <= 3; i++) {\n  AutomationPracticePage_default.checkCheckbox(i);\n}\ncy.wait(3e3);\nfor (let i = 1; i <= 3; i++) {\n  AutomationPracticePage_default.uncheckCheckbox(i);\n}\ncy.wait(3e3);\ncy.get('input[type=\"checkbox\"]').check().should(\"be.checked\");\ncy.wait(3e3);\ncy.get('input[type=\"checkbox\"]').uncheck().should(\"not.be.checked\");",
+              "err": {},
+              "uuid": "70e8f3ca-6f8c-48e7-a14e-84a956e33b14",
+              "parentUUID": "0f022880-cc54-4e65-8864-4c9554003c38",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Handles dropdown selection",
+              "fullTitle": "Google Search Test Handles dropdown selection",
+              "timedOut": null,
+              "duration": 6732,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "{\n  \"title\": \"cypress-mochawesome-reporter-videos-passed\",\n  \"value\": \"cypress\\\\integration\\\\examples\\\\AutomationPractice.spec.js\"\n}",
+              "code": "[\"option1\", \"option2\", \"option3\"].forEach((option) => {\n  AutomationPracticePage_default.selectDropdown(option);\n  cy.wait(1e3);\n  AutomationPracticePage_default.selectDropdown(\"\");\n});",
+              "err": {},
+              "uuid": "6526daef-8c94-434d-9899-00f02e942cea",
+              "parentUUID": "0f022880-cc54-4e65-8864-4c9554003c38",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Sets the input value to 'EG'",
+              "fullTitle": "Google Search Test Sets the input value to 'EG'",
+              "timedOut": null,
+              "duration": 1922,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "[\n  {\n    \"title\": \"cypress-mochawesome-reporter-videos-failed\",\n    \"value\": \"cypress\\\\integration\\\\examples\\\\AutomationPractice.spec.js\"\n  },\n  {\n    \"title\": \"cypress-mochawesome-reporter-screenshots\",\n    \"value\": [\n      [\n        \"\\\\AutomationPractice.spec.js\\\\Google Search Test -- Sets the input value to 'EG' (failed).png\"\n      ],\n      [\n        \"\\\\AutomationPractice.spec.js\\\\Google Search Test -- Sets the input value to 'EG' (failed) (attempt 2).png\"\n      ]\n    ]\n  }\n]",
+              "code": "AutomationPracticePage_default.typeAutocomplete(\"EG\");\ncy.wait(3e3);\nAutomationPracticePage_default.selectAutocompleteOption(\"Egypt\");",
+              "err": {
+                "message": "TypeError: AutomationPracticePage_default.typeAutocomplete is not a function",
+                "estack": "TypeError: AutomationPracticePage_default.typeAutocomplete is not a function\n    at Context.eval (https://rahulshettyacademy.com/__cypress/tests?p=cypress\\integration\\examples\\AutomationPractice.spec.js:65:38)",
+                "diff": null
+              },
+              "uuid": "4a923bbb-7216-435b-9315-65bc7888eb62",
+              "parentUUID": "0f022880-cc54-4e65-8864-4c9554003c38",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Checks if the input element is visible",
+              "fullTitle": "Google Search Test Checks if the input element is visible",
+              "timedOut": null,
+              "duration": 4586,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "{\n  \"title\": \"cypress-mochawesome-reporter-videos-passed\",\n  \"value\": \"cypress\\\\integration\\\\examples\\\\AutomationPractice.spec.js\"\n}",
+              "code": "AutomationPracticePage_default.checkInputVisibility();\ncy.wait(3e3);\nAutomationPracticePage_default.hideInput();",
+              "err": {},
+              "uuid": "b85c54ca-8abb-4e37-96e5-0060f04e2475",
+              "parentUUID": "0f022880-cc54-4e65-8864-4c9554003c38",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "70e8f3ca-6f8c-48e7-a14e-84a956e33b14",
+            "6526daef-8c94-434d-9899-00f02e942cea",
+            "b85c54ca-8abb-4e37-96e5-0060f04e2475"
+          ],
+          "failures": [
+            "4a923bbb-7216-435b-9315-65bc7888eb62"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 27660,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "reportPageTitle": "Cypress Test Results",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "saveAllAttempts": false,
+        "embeddedVideos": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

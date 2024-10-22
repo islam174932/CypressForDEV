@@ -1,0 +1,168 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-10-22T19:39:57.412Z",
+    "end": "2024-10-22T19:40:31.281Z",
+    "duration": 33869,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f2956793-474f-47ab-b211-9ccb2215c375",
+      "title": "",
+      "fullFile": "cypress\\integration\\examples\\hooks.js",
+      "file": "cypress\\integration\\examples\\hooks.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d6d50470-e6f6-4f89-a368-f4481b3301cc",
+          "title": "Hooks",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Visits the page and interacts with checkboxes",
+              "fullTitle": "Hooks Visits the page and interacts with checkboxes",
+              "timedOut": null,
+              "duration": 13860,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "{\n  \"title\": \"cypress-mochawesome-reporter-videos-passed\",\n  \"value\": \"cypress\\\\integration\\\\examples\\\\hooks.js\"\n}",
+              "code": "cy.get(\"#checkBoxOption1\").check().should(\"be.checked\");\ncy.get(\"#checkBoxOption2\").check().should(\"be.checked\");\ncy.get(\"#checkBoxOption3\").check().should(\"be.checked\");\ncy.wait(3e3);\ncy.get(\"#checkBoxOption1\").uncheck().should(\"not.be.checked\");\ncy.get(\"#checkBoxOption2\").uncheck().should(\"not.be.checked\");\ncy.get(\"#checkBoxOption3\").uncheck().should(\"not.be.checked\");\ncy.wait(3e3);\ncy.get('input[type=\"checkbox\"]').check().should(\"be.checked\");\ncy.wait(3e3);\ncy.get('input[type=\"checkbox\"]').uncheck().should(\"not.be.checked\");",
+              "err": {},
+              "uuid": "6a5ed0de-f5c0-454c-a321-677064b8f013",
+              "parentUUID": "d6d50470-e6f6-4f89-a368-f4481b3301cc",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Handles dropdown selection",
+              "fullTitle": "Hooks Handles dropdown selection",
+              "timedOut": null,
+              "duration": 6780,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "{\n  \"title\": \"cypress-mochawesome-reporter-videos-passed\",\n  \"value\": \"cypress\\\\integration\\\\examples\\\\hooks.js\"\n}",
+              "code": "cy.get(\"#dropdown-class-example\").select(\"option1\").should(\"have.value\", \"option1\");\ncy.wait(1e3);\ncy.get(\"#dropdown-class-example\").select(\"\").should(\"have.value\", \"\");\ncy.get(\"#dropdown-class-example\").select(\"option2\").should(\"have.value\", \"option2\");\ncy.wait(1e3);\ncy.get(\"#dropdown-class-example\").select(\"\").should(\"have.value\", \"\");\ncy.get(\"#dropdown-class-example\").select(\"option3\").should(\"have.value\", \"option3\");\ncy.wait(1e3);\ncy.get(\"#dropdown-class-example\").select(\"\").should(\"have.value\", \"\");",
+              "err": {},
+              "uuid": "02b296d9-92e3-4dab-902a-0c5226147000",
+              "parentUUID": "d6d50470-e6f6-4f89-a368-f4481b3301cc",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Sets the input value to 'EG'",
+              "fullTitle": "Hooks Sets the input value to 'EG'",
+              "timedOut": null,
+              "duration": 5604,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "{\n  \"title\": \"cypress-mochawesome-reporter-videos-passed\",\n  \"value\": \"cypress\\\\integration\\\\examples\\\\hooks.js\"\n}",
+              "code": "cy.get(\"#autocomplete\").type(\"EG\").should(\"have.value\", \"EG\");\ncy.wait(3e3);\ncy.contains(\"div.ui-menu-item-wrapper\", \"Egypt\").click();",
+              "err": {},
+              "uuid": "fadf58a3-4055-442a-b8dd-f981fe34e3d4",
+              "parentUUID": "d6d50470-e6f6-4f89-a368-f4481b3301cc",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Checks if the input element is visible",
+              "fullTitle": "Hooks Checks if the input element is visible",
+              "timedOut": null,
+              "duration": 5152,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "{\n  \"title\": \"cypress-mochawesome-reporter-videos-passed\",\n  \"value\": \"cypress\\\\integration\\\\examples\\\\hooks.js\"\n}",
+              "code": "cy.get(\"#displayed-text\").should(\"be.visible\");\ncy.wait(3e3);\ncy.get(\"#hide-textbox\").click();\ncy.get(\"#displayed-text\").should(\"not.be.visible\");",
+              "err": {},
+              "uuid": "f22d0ffc-c872-4111-8504-274ff84d820f",
+              "parentUUID": "d6d50470-e6f6-4f89-a368-f4481b3301cc",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6a5ed0de-f5c0-454c-a321-677064b8f013",
+            "02b296d9-92e3-4dab-902a-0c5226147000",
+            "fadf58a3-4055-442a-b8dd-f981fe34e3d4",
+            "f22d0ffc-c872-4111-8504-274ff84d820f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 31396,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "reportPageTitle": "Cypress Test Results",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "saveAllAttempts": false,
+        "embeddedVideos": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
