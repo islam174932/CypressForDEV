@@ -1,4 +1,3 @@
-# azure-pipelines.yml
 trigger:
 - main  # Adjust this to your default branch
 
@@ -13,14 +12,14 @@ steps:
 - script: |
     npm install
     npm run build  # If you have a build step
-    npx cypress run --config video=false  # Run tests without video recording
+    npx cypress run --config video=false --reporter junit --reporter-options 'mochaFile=results/test-results-[hash].xml'
   displayName: 'Install dependencies and run Cypress tests'
 
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'  # Use appropriate format
-    testResultsFiles: '**/test-results.xml'  # Adjust based on your reporter output
-    searchFolder: 'cypress/videos'  # Adjust to where your test results are stored
+    testResultsFiles: '**/results/test-results-*.xml'  # Adjust based on your reporter output
+    searchFolder: 'results'  # Adjust to where your test results are stored
     failOnNoResults: true
     publishRunAttachments: true
 
