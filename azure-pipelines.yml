@@ -13,12 +13,12 @@ steps:
     npm install
     npm run build  # If you have a build step
     npx cypress run --config video=false --reporter junit --reporter-options 'mochaFile=results/test-results-[hash].xml'
-  displayName: 'Install dependencies and run Cypress tests'
+  displayName: 'Run Cypress tests'
 
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'  # Use appropriate format
-    testResultsFiles: '**/results/test-results-*.xml'  # Adjust based on your reporter output
+    testResultsFiles: '**/results/test-results-*.xml'  # Ensure this matches your output
     searchFolder: 'results'  # Adjust to where your test results are stored
     failOnNoResults: true
     publishRunAttachments: true
