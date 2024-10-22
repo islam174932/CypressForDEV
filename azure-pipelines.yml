@@ -2,8 +2,7 @@
 trigger:
 - main  # Adjust this to your default branch
 
-pool:
-  vmImage: 'ubuntu-latest'  # You can change this to a Windows agent if needed
+pool: 'Default'  # You can change this to a Windows agent if needed
 
 steps:
 - task: NodeTool@0
