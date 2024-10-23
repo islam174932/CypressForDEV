@@ -22,6 +22,9 @@ steps:
     npm install @bahmutov/cypress-esbuild-preprocessor
     npm install @badeball/cypress-cucumber-preprocessor
     npm install cypress-mochawesome-reporter
+    npm install mochawesome
+    npm install mochawesome-merge
+    npm install mochawesome-report-generator
     npm install @types/node --save-dev
   displayName: 'Install Cypress and Required Packages'
 
@@ -30,8 +33,19 @@ steps:
   displayName: 'Verify Cypress'
 
 - script: |
-    npx cypress run --config baseUrl="$(baseUrl)"
-  displayName: 'Run Cypress Tests'
+    # Create the reports directory
+    mkdir -p cypress/reports/mocha
+    mkdir -p cypress/reports/html
+
+    # Run Cypress tests with Mochawesome reporter
+    npx cypress run --config baseUrl="$(baseUrl)" --reporter cypress-mochawesome-reporter
+    
+    # Merge the reports if there are multiple
+    npx mochawesome-merge cypress/reports/mocha/*.json > cypress/reports/html/report.json
+    
+    # Generate HTML report
+    npx marge cypress/reports/html/report.json -f report -o cypress/reports/html
+  displayName: 'Run Cypress Tests and Generate Reports'
 
 - task: PublishTestResults@2
   inputs:
@@ -60,8 +74,8 @@ steps:
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.SourcesDirectory)/cypress/reports'
-    artifact: 'cypress-reports'
+    targetPath: '$(Build.SourcesDirectory)/cypress/reports/html'
+    artifact: 'cypress-html-report'
     publishLocation: 'pipeline'
   condition: succeededOrFailed()
-  displayName: 'Publish Mochawesome Reports'
+  displayName: 'Publish HTML Reports'
